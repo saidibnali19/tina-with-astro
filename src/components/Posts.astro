@@ -1,0 +1,13 @@
+---
+import client from "../../tina/__generated__/client";
+import Post from "./Post.astro";
+
+// Fetching all posts
+const postsResponse = await client.queries.postConnection()
+const posts = postsResponse.data.postConnection.edges?.map(post => post)
+
+// console.log(posts)
+---
+{posts?.map(post => (
+    <Post title={post?.node?.title} />
+))}
